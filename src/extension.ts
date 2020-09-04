@@ -8,8 +8,8 @@ import {
   commands,
   DocumentFilter
 } from "vscode";
+import logger from "./lib/logger";
 import { paramCase } from "change-case";
-import { Observable } from "rxjs";
 
 const TEMPLATE_SUFFIX_SEPERATOR = "-";
 
@@ -18,27 +18,33 @@ const TEMPLATE_SUFFIX_SEPERATOR = "-";
 export function activate(context: vscode.ExtensionContext) {
   // Use the console to output diagnostic information (console.log) and errors (console.error)
   // This line of code will only be executed once when your extension is activated
-  const createComponent = (uri: vscode.Uri, suffix: string = "") => {
-    // window.showWarningMessage(uri.authority);
+  const createComponent = async (uri: vscode.Uri, suffix: string = "") => {
     // Display a dialog to the user
-    let enterComponentNameDialog$ = Observable.from(
-      window.showInputBox({
-        prompt: "Please enter component name."
-      })
-    );
 
-    enterComponentNameDialog$.concatMap(async (val) => {
-      if (val.length === 0) {
-        throw new Error("Component name can not be empty!");
-      }
-      let componentName = paramCase(val);
-      // let componentDir = FileHelper.createComponentDir(uri, componentName);
-      // return Observable.forkJoin(
-      //   FileHelper.createComponent(componentDir, componentName, suffix),
-      //   FileHelper.createIndexFile(componentDir, componentName),
-      //   FileHelper.createCSS(componentDir, componentName)
-      // );
+    const componentName = await window.showInputBox({
+      prompt: "Please enter component name."
     });
+
+    if (componentName.length === 0) {
+      logger("error", "Component name can not be empty");
+      throw new Error("Component name can not be empty");
+    }
+
+    const language = await window.showQuickPick(["JavaScript", "TypeScript"]);
+
+    // enterComponentNameDialog$.concatMap((val) => {
+    //   if (val.length === 0) {
+    //     throw new Error("Component name can not be empty!");
+    //   }
+    //   let componentName = paramCase(val);
+    //   // let componentDir = FileHelper.createComponentDir(uri, componentName);
+    //   return Observable.forkJoin(
+    //     enterLanguage$
+    //     // FileHelper.createComponent(componentDir, componentName, suffix),
+    //     // FileHelper.createIndexFile(componentDir, componentName),
+    //     // FileHelper.createCSS(componentDir, componentName)
+    //   );
+    // });
 
     //   .concatMap((result) => Observable.from(result))
     //   .filter((path) => path.length > 0)
