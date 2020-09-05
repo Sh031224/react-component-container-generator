@@ -1,0 +1,22 @@
+import React from {quotes}react{quotes}{semi}
+import PropTypes from {quotes}prop-types{quotes}{semi}
+{style}
+class {componentName} extends React.Component {
+  constructor(props){
+    super(props){semi}
+  }
+
+  render() {
+    return (
+      <>
+        <div></div>
+      </>
+    ){semi}
+  }
+}
+
+{componentName}.propTypes = {
+
+}{semi}
+
+export default {componentName}{semi}

@@ -1,0 +1,21 @@
+import React from {quotes}react{quotes}{semi}
+{style}
+interface {componentName}Props {
+
+}
+
+class {componentName} extends React.Component<{componentName}Props> {
+  constructor(props){
+    super(props){semi}
+  }
+
+  render() {
+    return (
+      <>
+        <div></div>
+      </>
+    ){semi}
+  }
+}{semi}
+
+export default {componentName}{semi}
