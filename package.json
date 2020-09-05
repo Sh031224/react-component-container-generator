@@ -14,6 +14,51 @@
   ],
   "main": "./out/src/extension.js",
   "contributes": {
+    "configuration": {
+      "type": "object",
+      "title": "React Component & Container Generator",
+      "properties": {
+        "ReactComponentContainerGenerator.global.quotes": {
+          "type": "string",
+          "enum": [
+            "single",
+            "double"
+          ],
+          "default": "double",
+          "description": "Options: `single` or `double` Result: `'`  or  `\"`"
+        },
+        "ReactComponentContainerGenerator.global.semi": {
+          "type": "boolean",
+          "default": true,
+          "description": "The extension of generated component file"
+        },
+        "ReactComponentContainerGenerator.componentFile.type": {
+          "type": "string",
+          "enum": [
+            "func",
+            "class"
+          ],
+          "default": "func",
+          "description": "The extension of generated component file"
+        },
+        "ReactComponentContainerGenerator.styleFile.create": {
+          "type": "boolean",
+          "default": true,
+          "description": "Whether to generate component's style file or not. e.g.: ComponentName.(extension)"
+        },
+        "ReactComponentContainerGenerator.styleFile.type": {
+          "type": "string",
+          "enum": [
+            "css",
+            "sass",
+            "scss",
+            "less"
+          ],
+          "default": "scss",
+          "description": "The type of stylesheet file to create"
+        }
+      }
+    },
     "commands": [
       {
         "command": "extension.genReactComponentFiles",
