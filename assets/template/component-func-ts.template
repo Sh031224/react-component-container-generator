@@ -1,6 +1,5 @@
 import React from {quotes}react{quotes}{semi}
-import {quotes}./{componentName}{style}{quotes}{semi}
-
+{style}
 interface {componentName}Props {
 
 }
