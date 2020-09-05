@@ -51,3 +51,45 @@ export const createComponent = (
 
   createFile(filename, componentContent);
 };
+
+export const createStyle = (componentDir: string, componentName: string) => {
+  const styleConfig: StyleConfig = getConfig().get("styleFile");
+
+  if (styleConfig.create) {
+    let templateFileName = assetRootDir + `/template/style.template`;
+
+    const compName = pascalCase(componentName);
+
+    let componentContent = fs.readFileSync(templateFileName).toString();
+
+    let filename = `${componentDir}/${compName}.${styleConfig.type}`;
+
+    createFile(filename, componentContent);
+  } else {
+    return;
+  }
+};
+
+export const createIndex = (
+  componentDir: string,
+  componentName: string,
+  language: string
+) => {
+  const globalConfig: GlobalConfig = getConfig().get("global");
+  const languageName: string = language === "JavaScript" ? "js" : "ts";
+
+  let templateFileName = assetRootDir + `/template/index.template`;
+
+  const compName = pascalCase(componentName);
+
+  let componentContent = fs
+    .readFileSync(templateFileName)
+    .toString()
+    .replace(/{componentName}/g, compName)
+    .replace(/{quotes}/g, globalConfig.quotes === "double" ? '"' : "'")
+    .replace(/{semi}/g, globalConfig.semi ? ";" : "");
+
+  let filename = `${componentDir}/index.${languageName}`;
+
+  createFile(filename, componentContent);
+};

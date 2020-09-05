@@ -37,6 +37,8 @@ export function activate(context: vscode.ExtensionContext) {
     const componentDir = createDir(uri, componentName);
 
     createFile.createComponent(componentDir, componentName, language, suffix);
+    createFile.createStyle(componentDir, componentName);
+    createFile.createIndex(componentDir, componentName, language);
     // enterComponentNameDialog$.concatMap((val) => {
     //   if (val.length === 0) {
     //     throw new Error("Component name can not be empty!");
