@@ -10,6 +10,8 @@ import {
 } from "vscode";
 import logger from "./lib/logger";
 import { paramCase } from "change-case";
+import * as createFile from "./lib/createFile";
+import createDir from "./lib/createDir";
 
 const TEMPLATE_SUFFIX_SEPERATOR = "-";
 
@@ -18,7 +20,7 @@ const TEMPLATE_SUFFIX_SEPERATOR = "-";
 export function activate(context: vscode.ExtensionContext) {
   // Use the console to output diagnostic information (console.log) and errors (console.error)
   // This line of code will only be executed once when your extension is activated
-  const createComponent = async (uri: vscode.Uri, suffix: string = "") => {
+  const createComponent = async (uri: vscode.Uri, suffix: string) => {
     // Display a dialog to the user
 
     const componentName = await window.showInputBox({
@@ -32,6 +34,9 @@ export function activate(context: vscode.ExtensionContext) {
 
     const language = await window.showQuickPick(["JavaScript", "TypeScript"]);
 
+    const componentDir = createDir(uri, componentName);
+
+    createFile.createComponent(componentDir, componentName, language, suffix);
     // enterComponentNameDialog$.concatMap((val) => {
     //   if (val.length === 0) {
     //     throw new Error("Component name can not be empty!");
@@ -82,7 +87,7 @@ export function activate(context: vscode.ExtensionContext) {
   // // Now provide the implementation of the command with  registerCommand
   // // The commandId parameter must match the command field in package.json
   componentArray.forEach((c) => {
-    const suffix = `${TEMPLATE_SUFFIX_SEPERATOR}${c.type}`;
+    const suffix = `${c.type}`;
     const disposable = commands.registerCommand(c.commandId, (uri) =>
       createComponent(uri, suffix)
     );
