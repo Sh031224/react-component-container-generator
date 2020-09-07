@@ -1,0 +1,18 @@
+import React from {quotes}react{quotes}{semi}
+import { inject, observer } from {quotes}mobx-react{quotes}{semi}
+
+class {componentName} extends React.Component {
+  constructor(){
+    super(){semi}
+  }
+
+  render() {
+    return (
+      <>
+        <div></div>
+      </>
+    ){semi}
+  }
+}{semi}
+
+export default inject({quotes}store{quotes})(observer({componentName})){semi}
