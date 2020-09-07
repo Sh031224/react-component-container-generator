@@ -1,6 +1,6 @@
 # Change Log
 
-All notable changes to the "react-component-generator" extension will be documented in this file.
+All notable changes to the "react-component-container-generator" extension will be documented in this file.
 
 <a name="1.0.1"></a>
 
