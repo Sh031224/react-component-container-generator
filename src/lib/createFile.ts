@@ -27,7 +27,7 @@ export const createComponent = (
   const globalConfig: GlobalConfig = getConfig().get("global");
   const componentConfig: ComponentConfig = getConfig().get("componentFile");
   const styleConfig: StyleConfig = getConfig().get("styleFile");
-  const languageName: string = language === "JavaScript" ? "js" : "ts";
+  const languageName: string = language === "JavaScript" ? "js" : "tsx";
   let oSuffix: string = `${suffix}-${componentConfig.type}-${languageName}`;
 
   let templateFileName = assetRootDir + `/template/${oSuffix}.template`;
@@ -49,7 +49,10 @@ export const createComponent = (
 
   let filename = `${componentDir}/${compName}.${languageName}`;
 
+  console.log(componentContent, filename);
   createFile(filename, componentContent);
+
+  return filename;
 };
 
 export const createStyle = (componentDir: string, componentName: string) => {
