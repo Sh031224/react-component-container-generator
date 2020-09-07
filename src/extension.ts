@@ -76,10 +76,6 @@ export function activate(context: vscode.ExtensionContext) {
       logger("error", err.message);
       throw new Error(err.message);
     }
-    //   .do((editor) => {
-    //     if (!editor) {
-    //     }
-    //   })
   };
 
   const componentArray = [
