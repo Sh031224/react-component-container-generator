@@ -1,103 +1,108 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
 import * as vscode from "vscode";
-import {
-  ExtensionContext,
-  workspace,
-  window,
-  commands,
-  DocumentFilter
-} from "vscode";
+import { workspace, window, commands } from "vscode";
 import logger from "./lib/logger";
-import { paramCase } from "change-case";
+import { pascalCase } from "change-case";
 import * as createFile from "./lib/createFile";
 import createDir from "./lib/createDir";
 
-const TEMPLATE_SUFFIX_SEPERATOR = "-";
-
-// this method is called when your extension is activated
-// your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
-  // Use the console to output diagnostic information (console.log) and errors (console.error)
-  // This line of code will only be executed once when your extension is activated
   const createComponent = async (uri: vscode.Uri, suffix: string) => {
-    // Display a dialog to the user
+    try {
+      if (suffix === "component") {
+        const componentName = await window.showInputBox({
+          prompt: "Please enter component name."
+        });
 
-    const componentName = await window.showInputBox({
-      prompt: "Please enter component name."
-    });
+        if (componentName.length === 0) {
+          logger("error", "Component name can not be empty");
+          throw new Error("Component name can not be empty");
+        }
 
-    if (componentName.length === 0) {
-      logger("error", "Component name can not be empty");
-      throw new Error("Component name can not be empty");
+        const language = await window.showQuickPick([
+          "JavaScript",
+          "TypeScript"
+        ]);
+
+        const componentDir = createDir(uri, componentName);
+
+        const fileName = createFile.createComponent(
+          componentDir,
+          componentName,
+          language,
+          suffix
+        );
+        createFile.createStyle(componentDir, componentName);
+        createFile.createIndex(componentDir, componentName, language);
+
+        workspace
+          .openTextDocument(fileName)
+          .then((document) => vscode.window.showTextDocument(document));
+      } else {
+        const componentName = await window.showInputBox({
+          prompt:
+            'Please enter container name without "Container". It will automatically generated.'
+        });
+
+        if (componentName.length === 0) {
+          logger("error", "Container name can not be empty");
+          throw new Error("Container name can not be empty");
+        }
+
+        const language = await window.showQuickPick([
+          "JavaScript",
+          "TypeScript"
+        ]);
+
+        const compName =
+          pascalCase(componentName).replace("Container", "") + "Container";
+
+        const componentDir = createDir(
+          uri,
+          pascalCase(componentName).replace("Container", "")
+        );
+
+        console.log(compName);
+
+        const fileName = createFile.createComponent(
+          componentDir,
+          compName,
+          language,
+          suffix
+        );
+
+        workspace
+          .openTextDocument(fileName)
+          .then((document) => vscode.window.showTextDocument(document));
+      }
+    } catch (err) {
+      logger("error", err.message);
+      throw new Error(err.message);
     }
-
-    const language = await window.showQuickPick(["JavaScript", "TypeScript"]);
-
-    const componentDir = createDir(uri, componentName);
-
-    createFile.createComponent(componentDir, componentName, language, suffix);
-    createFile.createStyle(componentDir, componentName);
-    createFile.createIndex(componentDir, componentName, language);
-    // enterComponentNameDialog$.concatMap((val) => {
-    //   if (val.length === 0) {
-    //     throw new Error("Component name can not be empty!");
-    //   }
-    //   let componentName = paramCase(val);
-    //   // let componentDir = FileHelper.createComponentDir(uri, componentName);
-    //   return Observable.forkJoin(
-    //     enterLanguage$
-    //     // FileHelper.createComponent(componentDir, componentName, suffix),
-    //     // FileHelper.createIndexFile(componentDir, componentName),
-    //     // FileHelper.createCSS(componentDir, componentName)
-    //   );
-    // });
-
-    //   .concatMap((result) => Observable.from(result))
-    //   .filter((path) => path.length > 0)
-    //   .first()
-    //   .concatMap((filename) =>
-    //     Observable.from(workspace.openTextDocument(filename))
-    //   )
-    //   .concatMap((textDocument) => {
-    //     if (!textDocument) {
-    //       logger("error", "Could not open file!");
-    //       throw new Error("Could not open file!");
-    //     }
-    //     return Observable.from(window.showTextDocument(textDocument));
-    //   })
     //   .do((editor) => {
     //     if (!editor) {
-    //       logger("error", "Could not open file!");
-    //       throw new Error("Could not open file!");
     //     }
     //   })
-    //   .subscribe(
-    //     (c) => logger("success", "React component successfully created!"),
-    //     (err) => logger("error", err.message)
-    //   );
   };
 
   const componentArray = [
     {
       type: "component",
       commandId: "extension.genReactComponentFiles"
+    },
+    {
+      type: "container",
+      commandId: "extension.genReactContainerFiles"
     }
   ];
 
-  // // The command has been defined in the package.json file
-  // // Now provide the implementation of the command with  registerCommand
-  // // The commandId parameter must match the command field in package.json
   componentArray.forEach((c) => {
     const suffix = `${c.type}`;
     const disposable = commands.registerCommand(c.commandId, (uri) =>
       createComponent(uri, suffix)
     );
 
-    // Add to a list of disposables which are disposed when this extension is deactivated.
     context.subscriptions.push(disposable);
   });
 }
 
-// this method is called when your extension is deactivated
 export function deactivate() {}
