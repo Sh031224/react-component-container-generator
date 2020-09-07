@@ -10,7 +10,8 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:extension.genReactComponentFiles"
+    "onCommand:extension.genReactComponentFiles",
+    "onCommand:extension.genReactContainerFiles"
   ],
   "main": "./out/src/extension.js",
   "contributes": {
@@ -30,7 +31,7 @@
         "ReactComponentContainerGenerator.global.semi": {
           "type": "boolean",
           "default": true,
-          "description": "The extension of generated component file"
+          "description": "Whether to add a semicolon at the end of the sentence."
         },
         "ReactComponentContainerGenerator.componentFile.type": {
           "type": "string",
@@ -44,7 +45,7 @@
         "ReactComponentContainerGenerator.styleFile.create": {
           "type": "boolean",
           "default": true,
-          "description": "Whether to generate component's style file or not. e.g.: ComponentName.(extension)"
+          "description": "Whether to generate component's style file or not."
         },
         "ReactComponentContainerGenerator.styleFile.type": {
           "type": "string",
@@ -63,12 +64,20 @@
       {
         "command": "extension.genReactComponentFiles",
         "title": "New React Component"
+      },
+      {
+        "command": "extension.genReactContainerFiles",
+        "title": "New React Container with Mobx"
       }
     ],
     "menus": {
       "explorer/context": [
         {
           "command": "extension.genReactComponentFiles",
+          "group": "navigation"
+        },
+        {
+          "command": "extension.genReactContainerFiles",
           "group": "navigation"
         }
       ]
