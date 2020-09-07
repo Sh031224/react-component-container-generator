@@ -1,33 +1,106 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
 import * as vscode from "vscode";
+import { workspace, window, commands } from "vscode";
+import logger from "./lib/logger";
+import { pascalCase } from "change-case";
+import * as createFile from "./lib/createFile";
+import createDir from "./lib/createDir";
 
-// this method is called when your extension is activated
-// your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
-  // Use the console to output diagnostic information (console.log) and errors (console.error)
-  // This line of code will only be executed once when your extension is activated
-  console.log(
-    'Congratulations, your extension "react-component-generator" is now active!'
-  );
+  const createComponent = async (uri: vscode.Uri, suffix: string) => {
+    try {
+      if (suffix === "component") {
+        const componentName = await window.showInputBox({
+          prompt: "Please enter component name."
+        });
 
-  // The command has been defined in the package.json file
-  // Now provide the implementation of the command with registerCommand
-  // The commandId parameter must match the command field in package.json
-  let disposable = vscode.commands.registerCommand(
-    "react-component-generator.helloWorld",
-    () => {
-      // The code you place here will be executed every time your command is executed
+        if (componentName.length === 0) {
+          logger("error", "Component name can not be empty");
+          throw new Error("Component name can not be empty");
+        }
 
-      // Display a message box to the user
-      vscode.window.showInformationMessage(
-        "Hello World from react-component-generator!"
-      );
+        const language = await window.showQuickPick([
+          "JavaScript",
+          "TypeScript"
+        ]);
+
+        const componentDir = createDir(uri, componentName);
+
+        const fileName = createFile.createComponent(
+          componentDir,
+          componentName,
+          language,
+          suffix
+        );
+        createFile.createStyle(componentDir, componentName);
+        createFile.createIndex(componentDir, componentName, language);
+
+        workspace
+          .openTextDocument(fileName)
+          .then((document) => vscode.window.showTextDocument(document));
+      } else {
+        const componentName = await window.showInputBox({
+          prompt:
+            'Please enter container name without "Container". It will automatically generated.'
+        });
+
+        if (componentName.length === 0) {
+          logger("error", "Container name can not be empty");
+          throw new Error("Container name can not be empty");
+        }
+
+        const language = await window.showQuickPick([
+          "JavaScript",
+          "TypeScript"
+        ]);
+
+        const compName =
+          pascalCase(componentName).replace("Container", "") + "Container";
+
+        const componentDir = createDir(
+          uri,
+          pascalCase(componentName).replace("Container", "")
+        );
+
+        const fileName = createFile.createComponent(
+          componentDir,
+          compName,
+          language,
+          suffix
+        );
+
+        workspace
+          .openTextDocument(fileName)
+          .then((document) => vscode.window.showTextDocument(document));
+      }
+    } catch (err) {
+      logger("error", err.message);
+      throw new Error(err.message);
     }
-  );
+    //   .do((editor) => {
+    //     if (!editor) {
+    //     }
+    //   })
+  };
 
-  context.subscriptions.push(disposable);
+  const componentArray = [
+    {
+      type: "component",
+      commandId: "extension.genReactComponentFiles"
+    },
+    {
+      type: "container",
+      commandId: "extension.genReactContainerFiles"
+    }
+  ];
+
+  componentArray.forEach((c) => {
+    const suffix = `${c.type}`;
+    const disposable = commands.registerCommand(c.commandId, (uri) =>
+      createComponent(uri, suffix)
+    );
+
+    context.subscriptions.push(disposable);
+  });
 }
 
-// this method is called when your extension is deactivated
 export function deactivate() {}

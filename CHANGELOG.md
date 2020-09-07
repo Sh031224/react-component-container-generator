@@ -2,8 +2,10 @@
 
 All notable changes to the "react-component-generator" extension will be documented in this file.
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
+### New Features
 
-## [Unreleased]
+<a name="0.0.1"></a>
+
+## [0.0.1](#) (2018-12-02)
 
 - Initial release
