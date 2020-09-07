@@ -3,7 +3,7 @@
 [![Version](https://vsmarketplacebadge.apphb.com/version/sh031224.react-component-container-generator.svg)](https://marketplace.visualstudio.com/items?itemName=sh031224.react-component-container-generator)
 [![The MIT License](https://flat.badgen.net/badge/license/MIT/orange)](http://opensource.org/licenses/MIT)
 [![Installs](https://vsmarketplacebadge.apphb.com/installs/sh031224.react-component-container-generator.svg)](https://marketplace.visualstudio.com/items?itemName=sh031224.react-component-container-generator)
-[![GitHub](https://flat.badgen.net/github/release/abdullahceylan/vscode-react-component-container-generator)](https://github.com/Sh031224/react-component-container-generator/releases)
+[![GitHub](https://flat.badgen.net/github/release/sh031224/react-component-container-generator)](https://github.com/Sh031224/react-component-container-generator/releases)
 
 ## Description
 
@@ -11,16 +11,55 @@ Generates React component & container files automatically.
 
 ## Usage
 
-- Right click on the file or folder.
-- Select one of following options:
-  - "New React Component"
-  - "New React Container with Mobx"
-- Enter a component name in the pop up in camelCase or PascalCase. If you enter the component name as in camelCase, then extension will convert it PascalCase automatically.
+<br />
+
+![component](assets/images/usage_1.gif)
+
+![container](assets/images/usage_2.gif)
 
 ## Configuration
+
+You can change to the extension's settings through VSCode settings. You can customize:
+
+### `ReactComponentContainerGenerator.global.quotes`
+
+The type of quotes
+
+- `single`
+- `double` (default)
+
+### `ReactComponentContainerGenerator.global.semi` (default: `true`)
+
+Whether to add a semicolon at the end of the sentence.
+
+<br/>
+
+### `ReactComponentContainerGenerator.componentFile.type`
+
+The type of generated component file
+
+- `func` (default)
+- `class`
+
+### `ReactComponentContainerGenerator.styleFile.create` (default: `true`)
+
+Whether to generate component's style file or not
+
+<br />
+
+### `ReactComponentContainerGenerator.styleFile.type`
+
+The extension of stylesheet file to create
+
+- `css`
+- `sass`
+- `scss` (default)
+- `less`
+
+## ChangeLog
 
 ### [Click here](CHANGELOG.md)
 
 ## Bugs
 
-Please report [here](https://github.com/abdullahceylan/vscode-react-component-generator/issues)
+Please report [here](https://github.com/sh031224/react-component-container-generator/issues)

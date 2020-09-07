@@ -2,7 +2,7 @@
   "name": "react-component-container-generator",
   "displayName": "React Component & Container Generator",
   "description": "Generates React component & container files automatically",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "publisher": "sh031224",
   "author": {
     "name": "Sh031224",
@@ -69,7 +69,7 @@
             "class"
           ],
           "default": "func",
-          "description": "The extension of generated component file"
+          "description": "The type of generated component file"
         },
         "ReactComponentContainerGenerator.styleFile.create": {
           "type": "boolean",
@@ -85,7 +85,7 @@
             "less"
           ],
           "default": "scss",
-          "description": "The type of stylesheet file to create"
+          "description": "The extension of stylesheet file to create"
         }
       }
     },
