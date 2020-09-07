@@ -49,7 +49,6 @@ export const createComponent = (
 
   let filename = `${componentDir}/${compName}.${languageName}`;
 
-  console.log(componentContent, filename);
   createFile(filename, componentContent);
 
   return filename;

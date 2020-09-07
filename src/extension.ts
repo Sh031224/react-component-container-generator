@@ -61,8 +61,6 @@ export function activate(context: vscode.ExtensionContext) {
           pascalCase(componentName).replace("Container", "")
         );
 
-        console.log(compName);
-
         const fileName = createFile.createComponent(
           componentDir,
           compName,
