@@ -4,8 +4,8 @@ All notable changes to the "react-component-generator" extension will be documen
 
 ### New Features
 
-<a name="0.0.1"></a>
+<a name="1.0.0"></a>
 
-## [0.0.1](#) (2018-12-02)
+## [1.0.0](#) (2020-09-07)
 
 - Initial release
