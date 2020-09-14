@@ -2,7 +2,7 @@
   "name": "react-component-container-generator",
   "displayName": "React Component & Container Generator",
   "description": "Generates React component & container files automatically",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "icon": "assets/images/logo.png",
   "publisher": "sh031224",
   "author": {
@@ -23,7 +23,7 @@
     "email": "1cktmdgh2@gmail.com"
   },
   "engines": {
-    "vscode": "^1.42.0"
+    "vscode": "^1.25.0"
   },
   "categories": [
     "Programming Languages",
@@ -72,6 +72,15 @@
           "default": "func",
           "description": "The type of generated component file"
         },
+        "ReactComponentContainerGenerator.componentFile.js": {
+          "type": "string",
+          "enum": [
+            "jsx",
+            "js"
+          ],
+          "default": "jsx",
+          "description": "JavaScript component extension."
+        },
         "ReactComponentContainerGenerator.styleFile.create": {
           "type": "boolean",
           "default": true,
@@ -83,7 +92,8 @@
             "css",
             "sass",
             "scss",
-            "less"
+            "less",
+            "styled-component"
           ],
           "default": "scss",
           "description": "The extension of stylesheet file to create"
@@ -125,7 +135,7 @@
     "@types/glob": "^7.1.3",
     "@types/mocha": "^8.0.0",
     "@types/node": "^14.0.27",
-    "@types/vscode": "^1.42.0",
+    "@types/vscode": "^1.25.0",
     "@typescript-eslint/eslint-plugin": "^3.8.0",
     "@typescript-eslint/parser": "^3.8.0",
     "eslint": "^7.6.0",
