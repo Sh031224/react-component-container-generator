@@ -47,6 +47,13 @@ Whether to generate component's style file or not
 
 <br />
 
+### `ReactComponentContainerGenerator.componentFile.js`
+
+Javascript file extension js or jsx.
+
+- `jsx` (default)
+- `js`
+
 ### `ReactComponentContainerGenerator.styleFile.type`
 
 The extension of stylesheet file to create
@@ -55,6 +62,7 @@ The extension of stylesheet file to create
 - `sass`
 - `scss` (default)
 - `less`
+- `styled-component`
 
 ## ChangeLog
 

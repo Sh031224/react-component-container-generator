@@ -1,0 +1,6 @@
+import styled from {quotes}styled-components{quotes}{semi}
+
+// export const Style = styled.div`
+//  display: flex;
+// `{semi}
+//

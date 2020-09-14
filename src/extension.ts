@@ -9,11 +9,13 @@ export function activate(context: vscode.ExtensionContext) {
   const createComponent = async (uri: vscode.Uri, suffix: string) => {
     try {
       if (suffix === "component") {
-        const componentName = await window.showInputBox({
+        let componentName = await window.showInputBox({
           prompt: "Please enter component name."
         });
 
-        if (componentName.length === 0) {
+        componentName = componentName.replace(/[^A-Za-z]/g, "");
+
+        if (!componentName || componentName.length === 0) {
           logger("error", "Component name can not be empty");
           throw new Error("Component name can not be empty");
         }
@@ -31,19 +33,21 @@ export function activate(context: vscode.ExtensionContext) {
           language,
           suffix
         );
-        createFile.createStyle(componentDir, componentName);
+        createFile.createStyle(componentDir, componentName, language);
         createFile.createIndex(componentDir, componentName, language);
 
         workspace
           .openTextDocument(fileName)
           .then((document) => vscode.window.showTextDocument(document));
       } else {
-        const componentName = await window.showInputBox({
+        let componentName = await window.showInputBox({
           prompt:
             'Please enter container name without "Container". It will automatically generated.'
         });
 
-        if (componentName.length === 0) {
+        componentName = componentName.replace(/[^A-Za-z]/g, "");
+
+        if (!componentName || componentName.length === 0) {
           logger("error", "Container name can not be empty");
           throw new Error("Container name can not be empty");
         }
