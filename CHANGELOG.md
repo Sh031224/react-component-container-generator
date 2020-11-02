@@ -2,7 +2,7 @@
 
 All notable changes to the "react-component-container-generator" extension will be documented in this file.
 
-<a name="1.0.2"></a>
+<a name="1.0.3"></a>
 
 ## [1.0.2](https://github.com/Sh031224/react-component-container-generator/releases/tag/v1.0.2) (2020-09-07)
 
