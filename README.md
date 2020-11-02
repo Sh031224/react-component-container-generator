@@ -54,6 +54,14 @@ Javascript file extension js or jsx.
 - `jsx` (default)
 - `js`
 
+### `ReactComponentContainerGenerator.containerFile.folder` (default: `true`)
+
+Whether to create a folder when creating a container
+
+### `ReactComponentContainerGenerator.containerFile.name` (default: `true`)
+
+Automatic container naming
+
 ### `ReactComponentContainerGenerator.styleFile.type`
 
 The extension of stylesheet file to create
