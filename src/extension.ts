@@ -4,6 +4,16 @@ import logger from "./lib/logger";
 import { pascalCase } from "change-case";
 import * as createFile from "./lib/createFile";
 import createDir from "./lib/createDir";
+import * as path from "path";
+import * as fs from "fs";
+import ContainerConfig from "./type/ContainerConfig";
+
+const getConfig = (uri?: vscode.Uri) => {
+  return workspace.getConfiguration(
+    "ReactComponentContainerGenerator",
+    uri
+  ) as any;
+};
 
 export function activate(context: vscode.ExtensionContext) {
   const createComponent = async (uri: vscode.Uri, suffix: string) => {
@@ -41,8 +51,7 @@ export function activate(context: vscode.ExtensionContext) {
           .then((document) => vscode.window.showTextDocument(document));
       } else {
         let componentName = await window.showInputBox({
-          prompt:
-            'Please enter container name without "Container". It will automatically generated.'
+          prompt: "Please enter container name."
         });
 
         componentName = componentName.replace(/[^A-Za-z]/g, "");
@@ -57,16 +66,33 @@ export function activate(context: vscode.ExtensionContext) {
           "TypeScript"
         ]);
 
-        const compName =
-          pascalCase(componentName).replace("Container", "") + "Container";
-
-        const componentDir = createDir(
-          uri,
-          pascalCase(componentName).replace("Container", "")
+        const containerConfig: ContainerConfig = getConfig().get(
+          "containerFile"
         );
 
+        let compName = pascalCase(componentName);
+
+        if (containerConfig.name) {
+          compName = compName.replace("Container", "") + "Container";
+          componentName = pascalCase(componentName).replace("Container", "");
+        }
+
+        let contextMenuSourcePath: string;
+
+        if (containerConfig.folder) {
+          contextMenuSourcePath = createDir(uri, pascalCase(componentName));
+        } else {
+          if (uri && fs.lstatSync(uri.fsPath).isDirectory()) {
+            contextMenuSourcePath = uri.fsPath;
+          } else if (uri) {
+            contextMenuSourcePath = path.dirname(uri.fsPath);
+          } else {
+            contextMenuSourcePath = workspace.rootPath;
+          }
+        }
+
         const fileName = createFile.createComponent(
-          componentDir,
+          contextMenuSourcePath,
           compName,
           language,
           suffix
