@@ -2,7 +2,7 @@
   "name": "react-component-container-generator",
   "displayName": "React Component & Container Generator",
   "description": "Generates React component & container files automatically",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "icon": "assets/images/logo.png",
   "publisher": "sh031224",
   "author": {
@@ -11,7 +11,7 @@
   },
   "homepage": "https://github.com/Sh031224/react-component-container-generator",
   "galleryBanner": {
-    "color": "#222222",
+    "color": "#211222",
     "theme": "dark"
   },
   "repository": {
@@ -80,6 +80,16 @@
           ],
           "default": "jsx",
           "description": "JavaScript component extension."
+        },
+        "ReactComponentContainerGenerator.containerFile.folder": {
+          "type": "boolean",
+          "default": true,
+          "description": "Whether to create a folder when creating a container"
+        },
+        "ReactComponentContainerGenerator.containerFile.name": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatic container naming"
         },
         "ReactComponentContainerGenerator.styleFile.create": {
           "type": "boolean",
