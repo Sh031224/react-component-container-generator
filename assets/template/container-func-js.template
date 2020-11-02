@@ -1,5 +1,5 @@
 import React from {quotes}react{quotes}{semi}
-import { inject, observer } from {quotes}mobx-react{quotes}{semi}
+import { observer } from {quotes}mobx-react{quotes}{semi}
 
 const {componentName} = ({}) => {
   return (
@@ -9,4 +9,4 @@ const {componentName} = ({}) => {
   ){semi}
 }{semi}
 
-export default inject({quotes}store{quotes})(observer({componentName})){semi}
+export default observer({componentName}){semi}
