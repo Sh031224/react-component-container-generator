@@ -41,12 +41,6 @@ The type of generated component file
 - `func` (default)
 - `class`
 
-### `ReactComponentContainerGenerator.styleFile.create` (default: `true`)
-
-Whether to generate component's style file or not
-
-<br />
-
 ### `ReactComponentContainerGenerator.componentFile.js`
 
 Javascript file extension js or jsx.
@@ -58,9 +52,19 @@ Javascript file extension js or jsx.
 
 Whether to create a folder when creating a container
 
+<br />
+
 ### `ReactComponentContainerGenerator.containerFile.name` (default: `true`)
 
 Automatic container naming
+
+<br />
+
+### `ReactComponentContainerGenerator.styleFile.create` (default: `true`)
+
+Whether to generate component's style file or not
+
+<br />
 
 ### `ReactComponentContainerGenerator.styleFile.type`
 
