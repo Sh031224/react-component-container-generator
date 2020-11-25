@@ -23,12 +23,12 @@ export function activate(context: vscode.ExtensionContext) {
           prompt: "Please enter component name."
         });
 
-        componentName = componentName.replace(/[^A-Za-z]/g, "");
-
         if (!componentName || componentName.length === 0) {
           logger("error", "Component name can not be empty");
           throw new Error("Component name can not be empty");
         }
+
+        componentName = componentName.replace(/[^A-Za-z]/g, "");
 
         const language = await window.showQuickPick([
           "JavaScript",
@@ -54,12 +54,12 @@ export function activate(context: vscode.ExtensionContext) {
           prompt: "Please enter container name."
         });
 
-        componentName = componentName.replace(/[^A-Za-z]/g, "");
-
         if (!componentName || componentName.length === 0) {
           logger("error", "Container name can not be empty");
           throw new Error("Container name can not be empty");
         }
+
+        componentName = componentName.replace(/[^A-Za-z]/g, "");
 
         const language = await window.showQuickPick([
           "JavaScript",

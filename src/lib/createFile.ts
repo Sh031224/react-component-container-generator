@@ -69,6 +69,7 @@ export const createStyle = (
   language: string
 ) => {
   const styleConfig: StyleConfig = getConfig().get("styleFile");
+  const globalConfig: GlobalConfig = getConfig().get("global");
   const languageName: string = language === "JavaScript" ? "js" : "ts";
 
   if (styleConfig.create) {
@@ -88,6 +89,10 @@ export const createStyle = (
 
     if (styleConfig.type === "styled-component") {
       filename += `.style.${languageName}`;
+      componentContent = componentContent
+        .replace(/{componentName}/g, compName)
+        .replace(/{quotes}/g, globalConfig.quotes === "double" ? '"' : "'")
+        .replace(/{semi}/g, globalConfig.semi ? ";" : "");
     } else {
       filename += `.${styleConfig.type}`;
     }
