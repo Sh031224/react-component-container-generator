@@ -4,7 +4,7 @@ All notable changes to the "react-component-container-generator" extension will 
 
 <a name="1.0.4"></a>
 
-## [1.0.4](https://github.com/Sh031224/react-component-container-generator/releases/tag/v1.0.4) (2020-11-03)
+## [1.0.4](https://github.com/Sh031224/react-component-container-generator/releases/tag/v1.0.4) (2020-11-26)
 
 ### Updates
 
@@ -12,7 +12,7 @@ All notable changes to the "react-component-container-generator" extension will 
 
 <a name="1.0.3"></a>
 
-## [1.0.3](https://github.com/Sh031224/react-component-container-generator/releases/tag/v1.0.3) (2020-09-07)
+## [1.0.3](https://github.com/Sh031224/react-component-container-generator/releases/tag/v1.0.3) (2020-11-03)
 
 ### Updates
 
