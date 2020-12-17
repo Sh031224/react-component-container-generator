@@ -2,6 +2,15 @@
 
 All notable changes to the "react-component-container-generator" extension will be documented in this file.
 
+<a name="1.0.5"></a>
+
+## [1.0.5](https://github.com/Sh031224/react-component-container-generator/releases/tag/v1.0.5) (2020-12-17)
+
+### Updates
+
+- Remove import when style file is not created.
+- Warning when component name is not in English.
+
 <a name="1.0.4"></a>
 
 ## [1.0.4](https://github.com/Sh031224/react-component-container-generator/releases/tag/v1.0.4) (2020-11-26)
