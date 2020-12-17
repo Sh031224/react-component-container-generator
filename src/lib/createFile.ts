@@ -41,7 +41,7 @@ export const createComponent = (
 
   let componentContent = fs.readFileSync(templateFileName).toString();
 
-  if (styleConfig.type === "styled-component") {
+  if (styleConfig.type === "styled-component" && styleConfig.create) {
     componentContent = componentContent.replace(
       /{style}/g,
       `//import {  } from {quotes}./{componentName}.style.${languageName}{quotes}{semi}`

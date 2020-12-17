@@ -30,6 +30,11 @@ export function activate(context: vscode.ExtensionContext) {
 
         componentName = componentName.replace(/[^A-Za-z]/g, "");
 
+        if (componentName === "") {
+          logger("error", "Component name can only be in English.");
+          throw new Error("Component name can only be in English.");
+        }
+
         const language = await window.showQuickPick([
           "JavaScript",
           "TypeScript"
@@ -60,6 +65,11 @@ export function activate(context: vscode.ExtensionContext) {
         }
 
         componentName = componentName.replace(/[^A-Za-z]/g, "");
+
+        if (componentName === "") {
+          logger("error", "Container name can only be in English.");
+          throw new Error("Container name can only be in English.");
+        }
 
         const language = await window.showQuickPick([
           "JavaScript",
