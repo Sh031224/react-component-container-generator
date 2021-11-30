@@ -2,7 +2,7 @@
   "name": "react-component-container-generator",
   "displayName": "React Component & Container Generator",
   "description": "Generates React component & container files automatically",
-  "version": "1.0.5",
+  "version": "1.1.0",
   "icon": "assets/images/logo.png",
   "publisher": "sh031224",
   "author": {
@@ -81,6 +81,15 @@
           "default": "jsx",
           "description": "JavaScript component extension."
         },
+        "ReactComponentContainerGenerator.componentFile.declare": {
+          "type": "string",
+          "enum": [
+            "function",
+            "const"
+          ],
+          "default": "const",
+          "description": "How to declare a function component. function or const"
+        },
         "ReactComponentContainerGenerator.containerFile.folder": {
           "type": "boolean",
           "default": true,
@@ -103,6 +112,10 @@
             "sass",
             "scss",
             "less",
+            "module.css",
+            "module.scss",
+            "module.sass",
+            "module.less",
             "styled-component"
           ],
           "default": "scss",

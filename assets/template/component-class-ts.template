@@ -1,10 +1,11 @@
-import React from {quotes}react{quotes}{semi}
+import { Component } from {quotes}react{quotes}{semi}
+
 {style}
-interface {componentName}Props {
+interface Props {
 
 }
 
-class {componentName} extends React.Component<{componentName}Props> {
+class {componentName} extends Component<Props> {
   constructor(props){
     super(props){semi}
   }
@@ -12,7 +13,7 @@ class {componentName} extends React.Component<{componentName}Props> {
   render() {
     return (
       <>
-        <div></div>
+        <div />
       </>
     ){semi}
   }

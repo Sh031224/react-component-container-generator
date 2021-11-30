@@ -1,5 +1,9 @@
 {style}
-const {componentName} = () => {
+interface Props {
+
+}
+
+const {componentName} = (props: Props) => {
   return (
     <>
       <div />

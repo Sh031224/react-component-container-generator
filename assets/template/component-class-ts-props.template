@@ -1,5 +1,4 @@
 import { Component } from {quotes}react{quotes}{semi}
-
 {style}
 class {componentName} extends Component {
   constructor(props){
@@ -13,6 +12,6 @@ class {componentName} extends Component {
       </>
     ){semi}
   }
-}
+}{semi}
 
 export default {componentName}{semi}
