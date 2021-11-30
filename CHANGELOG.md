@@ -2,9 +2,17 @@
 
 All notable changes to the "react-component-container-generator" extension will be documented in this file.
 
+<a name="1.1.1"></a>
+
+## [1.1.1](https://github.com/Sh031224/react-component-container-generator/releases/tag/v1.1.0) (2021-11-30)
+
+### Updates
+
+- Fix not running error
+
 <a name="1.1.0"></a>
 
-## [1.0.5](https://github.com/Sh031224/react-component-container-generator/releases/tag/v1.1.0) (2021-11-30)
+## [1.1.0](https://github.com/Sh031224/react-component-container-generator/releases/tag/v1.1.0) (2021-11-30)
 
 ### Updates
 
