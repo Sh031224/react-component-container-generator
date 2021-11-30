@@ -9,10 +9,7 @@ import * as fs from "fs";
 import ContainerConfig from "./type/ContainerConfig";
 
 const getConfig = (uri?: vscode.Uri) => {
-  return workspace.getConfiguration(
-    "ReactComponentContainerGenerator",
-    uri
-  ) as any;
+  return workspace.getConfiguration("ReactComponentContainerGenerator", uri) as any;
 };
 
 export function activate(context: vscode.ExtensionContext) {
@@ -35,10 +32,9 @@ export function activate(context: vscode.ExtensionContext) {
           throw new Error("Component name can only be in English.");
         }
 
-        const language = await window.showQuickPick([
-          "JavaScript",
-          "TypeScript"
-        ]);
+        const language = await window.showQuickPick(["JavaScript", "TypeScript"]);
+
+        const props = await window.showQuickPick(["Without Props", "Include Props"]);
 
         const componentDir = createDir(uri, componentName);
 
@@ -46,7 +42,8 @@ export function activate(context: vscode.ExtensionContext) {
           componentDir,
           componentName,
           language,
-          suffix
+          suffix,
+          props === "Include Props"
         );
         createFile.createStyle(componentDir, componentName, language);
         createFile.createIndex(componentDir, componentName, language);
@@ -71,14 +68,9 @@ export function activate(context: vscode.ExtensionContext) {
           throw new Error("Container name can only be in English.");
         }
 
-        const language = await window.showQuickPick([
-          "JavaScript",
-          "TypeScript"
-        ]);
+        const language = await window.showQuickPick(["JavaScript", "TypeScript"]);
 
-        const containerConfig: ContainerConfig = getConfig().get(
-          "containerFile"
-        );
+        const containerConfig: ContainerConfig = getConfig().get("containerFile");
 
         let compName = pascalCase(componentName);
 
@@ -105,7 +97,8 @@ export function activate(context: vscode.ExtensionContext) {
           contextMenuSourcePath,
           compName,
           language,
-          suffix
+          suffix,
+          false
         );
 
         workspace
@@ -131,9 +124,7 @@ export function activate(context: vscode.ExtensionContext) {
 
   componentArray.forEach((c) => {
     const suffix = `${c.type}`;
-    const disposable = commands.registerCommand(c.commandId, (uri) =>
-      createComponent(uri, suffix)
-    );
+    const disposable = commands.registerCommand(c.commandId, (uri) => createComponent(uri, suffix));
 
     context.subscriptions.push(disposable);
   });

@@ -1,13 +1,8 @@
-import React from {quotes}react{quotes}{semi}
 {style}
-interface {componentName}Props {
-
-}
-
-const {componentName} = ({}: {componentName}Props) => {
+const {componentName} = () => {
   return (
     <>
-      <div></div>
+      <div />
     </>
   ){semi}
 }{semi}

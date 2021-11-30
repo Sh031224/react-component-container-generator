@@ -1,10 +1,9 @@
-import React from {quotes}react{quotes}{semi}
 import { observer } from {quotes}mobx-react{quotes}{semi}
 
-const {componentName} = ({}) => {
+const {componentName} = () => {
   return (
     <>
-      <div></div>
+      <div />
     </>
   ){semi}
 }{semi}

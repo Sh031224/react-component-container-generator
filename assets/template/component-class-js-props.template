@@ -1,4 +1,5 @@
 import { Component } from {quotes}react{quotes}{semi}
+import PropTypes from {quotes}prop-types{quotes}{semi}
 
 {style}
 class {componentName} extends Component {
@@ -14,5 +15,9 @@ class {componentName} extends Component {
     ){semi}
   }
 }
+
+{componentName}.propTypes = {
+
+}{semi}
 
 export default {componentName}{semi}
