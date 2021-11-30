@@ -2,6 +2,16 @@
 
 All notable changes to the "react-component-container-generator" extension will be documented in this file.
 
+<a name="1.1.0"></a>
+
+## [1.0.5](https://github.com/Sh031224/react-component-container-generator/releases/tag/v1.1.0) (2021-11-30)
+
+### Updates
+
+- Add `Without Props` Options
+- Add `module.*` Options
+- Add `function` or `const` Options
+
 <a name="1.0.5"></a>
 
 ## [1.0.5](https://github.com/Sh031224/react-component-container-generator/releases/tag/v1.0.5) (2020-12-17)

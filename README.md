@@ -48,6 +48,13 @@ Javascript file extension js or jsx.
 - `jsx` (default)
 - `js`
 
+### `ReactComponentContainerGenerator.componentFile.declare`
+
+How to declare a function component. function or const
+
+- `function`
+- `const` (default)
+
 ### `ReactComponentContainerGenerator.containerFile.folder` (default: `true`)
 
 Whether to create a folder when creating a container
@@ -74,6 +81,10 @@ The extension of stylesheet file to create
 - `sass`
 - `scss` (default)
 - `less`
+- `module.css`,
+- `module.scss`,
+- `module.sass`,
+- `module.less`,
 - `styled-component`
 
 ## ChangeLog
